@@ -15,12 +15,12 @@ const FEATURES = [
   },
   {
     etiqueta: "execução",
-    titulo: "Plano em fases sem pular etapas",
+    titulo: "plano em fases sem pular etapas",
     desc: "O projeto sai organizado em passos pequenos, com design no momento certo e menos retrabalho no começo.",
   },
   {
     etiqueta: "contexto",
-    titulo: "Regras para o agente começar alinhado",
+    titulo: "regras para o agente começar alinhado",
     desc: "As instruções essenciais ficam salvas no projeto, para a próxima sessão entender o que fazer sem reexplicar tudo.",
   },
 ];
@@ -32,7 +32,7 @@ const ARQUIVOS = [
   { nome: "CLAUDE.md", desc: "Instruções de trabalho para o Claude Code" },
   { nome: ".claude/settings.json", desc: "Permissões iniciais configuradas com cuidado" },
   { nome: ".env.example", desc: "Modelo das variáveis que o projeto precisa" },
-  { nome: "sos.md", desc: "Guia simples para terminal e próximos passos" },
+  { nome: "sos.md", desc: "Guia simples para você abrir no terminal e saber os próximos passos" },
   { nome: "prompt-inicial.txt", desc: "Mensagem pronta para colar no agente e começar" },
 ];
 
@@ -91,7 +91,7 @@ export default function HomePage() {
             <div className="preview-board" aria-label="Prévia do pacote SOS Dev Start">
               <aside className="mock-side">
                 <p className="mock-title">pacote gerado</p>
-                <div className="mock-nav active">Briefing <span className="mock-dot"></span></div>
+                <div className="mock-nav">Briefing <span className="mock-dot"></span></div>
                 <div className="mock-nav">PRD <span className="mock-dot"></span></div>
                 <div className="mock-nav">Plano <span className="mock-dot"></span></div>
                 <div className="mock-nav">Agente <span className="mock-dot"></span></div>
@@ -101,7 +101,7 @@ export default function HomePage() {
                 <div className="mock-top">
                   <div>
                     <h2>o guia pra você começar seu projeto do jeito certo.</h2>
-                    <p>VOCÊ RECEBE TODOS OS ARQUIVOS NECESSÁRIOS PRA COMEÇAR SEU PROJETO E A PRÓPRIA DOCUMENTAÇÃO ORIENTA O AGENTE A TE GUIAR DURANTE TODO O PROCESSO.</p>
+                    <p>Você recebe todos os arquivos necessários pra começar seu projeto e a própria documentação orienta o agente a te guiar durante todo o processo.</p>
                   </div>
                   <span className="pill">ZIP pronto</span>
                 </div>
@@ -119,10 +119,10 @@ export default function HomePage() {
                   <article className="mock-card wide">
                     <span className="mock-label">Arquivos principais</span>
                     <div className="mock-row"><strong>PRD.md</strong><span>pronto pra copiar e colar</span></div>
-                    <div className="mock-row"><strong>PLANO.md</strong><span>um guia à prova de erros pra o seu agente não esquecer de nada</span></div>
+                    <div className="mock-row"><strong>PLANO.md</strong><span>um plano à prova de erros pra o seu agente não esquecer de nada</span></div>
                     <div className="mock-row"><strong>AGENTS.md</strong><span>regras pra qualquer agente seguir o projeto</span></div>
                     <div className="mock-row"><strong>CLAUDE.md</strong><span>instruções prontas para o Claude Code</span></div>
-                    <div className="mock-row"><strong>sos.md</strong><span>passo a passo simples pra não travar</span></div>
+                    <div className="mock-row"><strong>sos.md</strong><span>um guia simples pra você não travar no terminal</span></div>
                   </article>
                 </div>
               </main>

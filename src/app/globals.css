@@ -2,374 +2,626 @@
 
 *, *::before, *::after { box-sizing: border-box; }
 
-:root {
-  --app-bg: #f7f7f4;
-  --app-panel: #ffffff;
-  --app-panel-2: #f0f1ea;
-  --app-panel-3: #e7ead8;
-  --app-border: rgba(27,27,37,.14);
-  --app-border-strong: rgba(27,27,37,.24);
-  --app-text: #1b1b25;
-  --app-muted: #3f3744;
-  --app-accent: #b7c939;
-  --app-accent-strong: #6f7b18;
-  --app-lilac: #c987e1;
-  --app-blue: #adcbf8;
-  --app-peach: #ffbc99;
-  --app-red: #b44b7a;
-  --radius: 8px;
-  --shadow: 0 18px 42px rgba(27,27,37,.08);
-  --title-font: "Manrope", Arial, sans-serif;
-  --body-font: "Manrope", Arial, sans-serif;
-  --mono-font: "JetBrains Mono", Consolas, monospace;
-}
-
 html, body { width: 100%; min-height: 100%; margin: 0; }
 body {
+  /* grade de fundo — linhas horizontais levemente visíveis */
   background:
-    linear-gradient(rgba(27,27,37,.045) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(27,27,37,.045) 1px, transparent 1px),
+    linear-gradient(#1b1b250B 1px, transparent 1px),
+    /* grade de fundo — linhas verticais levemente visíveis */
+    linear-gradient(90deg, #1b1b250B 1px, transparent 1px),
+    /* cor de fundo da página — bege claro */
     #f7f7f4;
+  /* tamanho da célula da grade — 32x32px */
   background-size: 32px 32px, 32px 32px, auto;
+  /* cor principal do texto */
   color: #1b1b25;
+  /* fonte padrão do corpo — 13px, altura de linha 1.5 */
   font: 13px/1.5 "Manrope", Arial, sans-serif;
 }
 button, input, select, textarea { font: inherit; }
 button { cursor: pointer; }
-button:disabled { cursor: not-allowed; opacity: .48; }
+/* botão desativado — cursor bloqueado e opacidade reduzida */
+button:disabled { cursor: not-allowed; opacity: 0.48; }
 a { color: inherit; text-decoration: none; }
 .hidden { display: none !important; }
 
 /* ── Botões ── */
 .btn {
+  /* altura mínima do botão */
   min-height: 34px;
+  /* layout interno em linha, centralizado */
   display: inline-flex;
+  /* alinha itens verticalmente ao centro */
   align-items: center;
+  /* alinha itens horizontalmente ao centro */
   justify-content: center;
+  /* espaço entre ícone e texto dentro do botão */
   gap: 8px;
-  border: 1px solid rgba(27,27,37,.14);
+  /* borda fina cinza ao redor do botão */
+  border: 1px solid #1b1b2524;
+  /* cantos arredondados — 8px */
   border-radius: 8px;
+  /* cor de fundo do botão padrão — cinza claro */
   background: #f0f1ea;
+  /* cor do texto do botão */
   color: #1b1b25;
+  /* espaço interno do botão — cima/baixo 8px, laterais 12px */
   padding: 8px 12px;
+  /* peso da fonte — extranegrito */
   font-weight: 800;
+  /* tamanho da fonte do botão */
   font-size: 12px;
-  transition: border-color .16s, transform .16s, background .16s;
+  /* transição suave da borda, posição e fundo ao hover */
+  transition: border-color 0.16s, transform 0.16s, background 0.16s;
 }
+/* hover: borda verde-limão e sobe 1px */
 .btn:hover { border-color: #b7c939; transform: translateY(-1px); }
+/* variante primária: fundo verde-limão */
 .btn.primary { background: #b7c939; border-color: #b7c939; }
+/* variante ghost: fundo transparente */
 .btn.ghost { background: transparent; }
+/* variante full: ocupa toda a largura disponível */
 .btn.full { width: 100%; }
+/* variante small: menor altura e fonte menor */
 .btn.small { min-height: 28px; padding: 5px 8px; font-size: 11px; }
+/* variante danger: hover com borda e texto vermelho-rosa */
 .btn.danger:hover { border-color: #b44b7a; color: #b44b7a; }
 
 /* ── Inputs ── */
 .input, .textarea, .select {
+  /* ocupa toda a largura do container */
   width: 100%;
+  /* altura mínima do campo */
   min-height: 36px;
-  border: 1px solid rgba(27,27,37,.14);
+  /* borda fina cinza */
+  border: 1px solid #1b1b2524;
+  /* cantos arredondados — 8px */
   border-radius: 8px;
+  /* cor de fundo do campo — cinza clarinho */
   background: #f0f1ea;
+  /* cor do texto digitado */
   color: #1b1b25;
+  /* remove o outline padrão do navegador */
   outline: none;
+  /* espaço interno — cima/baixo 9px, laterais 10px */
   padding: 9px 10px;
 }
+/* textarea: altura mínima maior e redimensionável verticalmente */
 .textarea { min-height: 94px; resize: vertical; line-height: 1.5; }
-.input:focus, .textarea:focus, .select:focus { border-color: #b7c939; background: #fff; }
+/* focus: borda verde-limão e fundo branco */
+.input:focus, .textarea:focus, .select:focus { border-color: #b7c939; background: #ffffff; }
 .label {
+  /* label em linha com justificação entre esquerda e direita */
   display: flex;
   justify-content: space-between;
+  /* espaço entre os itens do label */
   gap: 10px;
+  /* margem abaixo do label, separando do campo */
   margin: 0 0 7px;
+  /* cor do texto do label — cinza médio */
   color: #3f3744;
+  /* tamanho da fonte do label */
   font-size: 12px;
+  /* peso máximo — extranegrito */
   font-weight: 900;
-  letter-spacing: .08em;
+  /* espaçamento entre letras do label */
+  letter-spacing: 0.08em;
+  /* texto em maiúsculas */
   text-transform: uppercase;
 }
+/* hint: texto auxiliar menor e mais claro */
 .hint { color: #3f3744; font-size: 11px; line-height: 1.45; }
-.divider { height: 1px; background: rgba(27,27,37,.14); margin: 14px 0; }
+/* divider: linha horizontal de separação */
+.divider { height: 1px; background: #1b1b2524; margin: 14px 0; }
 
 /* ── Topbar ── */
 .topbar {
+  /* barra fixa no topo da tela ao rolar */
   position: sticky;
   top: 0;
+  /* fica acima de todo o conteúdo */
   z-index: 10;
-  border-bottom: 1px solid rgba(27,27,37,.14);
-  background: rgba(247,247,244,.9);
+  /* borda inferior fina separando do conteúdo */
+  border-bottom: 1px solid #1b1b2524;
+  /* fundo levemente translúcido — 90% de opacidade */
+  background: #f7f7f4E6;
+  /* desfoque do conteúdo atrás da topbar */
   backdrop-filter: blur(16px);
 }
 .topbar-inner {
+  /* altura fixa da topbar */
   height: 64px;
+  /* layout horizontal com espaço entre brand e navegação */
   display: flex;
   align-items: center;
   justify-content: space-between;
+  /* espaço entre os elementos internos */
   gap: 12px;
+  /* espaço interno lateral da topbar */
   padding: 0 18px;
 }
+/* brand: logo + nome do produto em linha */
 .brand { display: flex; align-items: center; gap: 10px; font-weight: 900; }
 .mark {
+  /* dimensões do ícone quadrado */
   width: 34px;
   height: 34px;
+  /* centraliza o conteúdo dentro do quadrado */
   display: grid;
   place-items: center;
-  border: 1px solid rgba(27,27,37,.14);
+  /* borda fina ao redor do ícone */
+  border: 1px solid #1b1b2524;
+  /* cantos arredondados do ícone */
   border-radius: 8px;
+  /* gradiente diagonal: verde-limão → azul claro → lilás */
   background: linear-gradient(135deg, #b7c939, #adcbf8 52%, #c987e1);
+  /* fonte monoespaçada e negrita do ícone */
   font: 900 14px/1 "JetBrains Mono", Consolas, monospace;
 }
+/* tabs: linha de abas na topbar */
 .tabs { display: flex; gap: 8px; }
+/* tab: variante transparente de botão */
 .tab { background: transparent; }
-.tab.active { border-color: #b7c939; background: rgba(183,201,57,.18); }
+/* tab ativa: borda verde e fundo verde translúcido — 18% opacidade */
+.tab.active { border-color: #b7c939; background: #b7c9392E; }
 
 /* ── Landing hero ── */
 .intro {
+  /* ocupa o restante da viewport abaixo da topbar (64px) */
   min-height: calc(100vh - 64px);
+  /* duas colunas: esquerda fixa 320–500px, direita flexível */
   display: grid;
   grid-template-columns: minmax(320px, 500px) minmax(480px, 1fr);
 }
 .intro-left {
+  /* coluna esquerda em coluna vertical */
   display: flex;
   flex-direction: column;
+  /* espaço interno da coluna esquerda */
   padding: 34px;
-  border-right: 1px solid rgba(27,27,37,.14);
+  /* borda direita separando as duas colunas */
+  border-right: 1px solid #1b1b2524;
+  /* gradiente de fundo suave: azul claro → pêssego → verde-limão sobre branco */
   background:
-    linear-gradient(150deg, rgba(173,203,248,.5), rgba(255,188,153,.34) 46%, rgba(183,201,57,.22)),
+    linear-gradient(150deg, #adcbf880, #ffbc9957 46%, #b7c93938),
     #ffffff;
 }
 .kicker {
+  /* margem abaixo do kicker, separando do título */
   margin: 0 0 30px;
+  /* cor do kicker — verde escuro */
   color: #6f7b18;
+  /* tamanho da fonte do kicker */
   font-size: 12px;
+  /* peso da fonte — máximo */
   font-weight: 900;
-  letter-spacing: .14em;
+  /* espaçamento entre letras do kicker */
+  letter-spacing: 0.14em;
+  /* texto em maiúsculas */
   text-transform: uppercase;
 }
 .intro-title {
+  /* largura máxima do título */
   max-width: 420px;
+  /* margem abaixo do título */
   margin: 0 0 16px;
-  font: 900 48px/.96 "Manrope", Arial, sans-serif;
+  /* fonte: extranegrito 48px, altura de linha compacta */
+  font: 900 48px/0.96 "Manrope", Arial, sans-serif;
+  /* espaçamento negativo entre letras — efeito compactado */
   letter-spacing: -3px;
+  /* título em minúsculas */
   text-transform: lowercase;
 }
 .intro-copy {
+  /* largura máxima do parágrafo introdutório */
   max-width: 420px;
   margin: 0;
+  /* cor do texto — cinza escuro */
   color: #3f3744;
+  /* tamanho da fonte do parágrafo */
   font-size: 15px;
+  /* altura de linha confortável */
   line-height: 1.45;
 }
 .intro-actions {
+  /* botões em linha, quebram para próxima linha se necessário */
   display: flex;
   flex-wrap: wrap;
+  /* espaço entre os botões */
   gap: 10px;
+  /* espaço acima dos botões */
   margin-top: 28px;
   margin-bottom: 0;
 }
 .intro-note {
+  /* empurra o note para o fundo da coluna */
   margin-top: auto;
-  border: 1px solid rgba(27,27,37,.14);
+  /* borda ao redor do note */
+  border: 1px solid #1b1b2524;
+  /* cantos arredondados do note */
   border-radius: 8px;
-  background: rgba(255,255,255,.68);
+  /* fundo branco com 68% de opacidade */
+  background: #ffffffAD;
+  /* espaço interno do note */
   padding: 14px;
+  /* cor do texto do note */
   color: #3f3744;
 }
+/* título do note em negrito e cor escura */
 .intro-note strong { display: block; color: #1b1b25; margin-bottom: 4px; }
 
 .intro-right {
+  /* espaço interno da coluna direita */
   padding: 34px;
+  /* layout em grade, centralizado verticalmente */
   display: grid;
   align-content: center;
+  /* espaço entre elementos da coluna direita */
   gap: 14px;
 }
 
 /* ── Preview board ── */
 .preview-board {
+  /* grade com sidebar 220px e conteúdo flexível */
   display: grid;
   grid-template-columns: 220px minmax(0, 1fr);
-  border: 1px solid rgba(27,27,37,.14);
+  /* borda ao redor do board */
+  border: 1px solid #1b1b2524;
+  /* cantos arredondados do board */
   border-radius: 8px;
+  /* esconde bordas que ultrapassem o raio */
   overflow: hidden;
+  /* fundo branco do board */
   background: #ffffff;
-  box-shadow: 0 18px 42px rgba(27,27,37,.08);
+  /* sombra suave abaixo do board */
+  box-shadow: 0 18px 42px #1b1b2514;
 }
-.mock-side { border-right: 1px solid rgba(27,27,37,.14); background: #f0f1ea; padding: 18px; }
+/* sidebar do mock: fundo cinza claro com borda direita */
+.mock-side { border-right: 1px solid #1b1b2524; background: #f0f1ea; padding: 18px; }
+/* título da sidebar — verde escuro e maiúsculas */
 .mock-title { margin: 0 0 16px; color: #6f7b18; font-size: 12px; font-weight: 900; text-transform: uppercase; }
 .mock-nav {
+  /* item de navegação do mock em linha com espaço entre texto e dot */
   display: flex;
   justify-content: space-between;
   gap: 10px;
-  border: 1px solid rgba(27,27,37,.14);
+  /* borda ao redor de cada item */
+  border: 1px solid #1b1b2524;
+  /* cantos arredondados */
   border-radius: 8px;
-  background: rgba(255,255,255,.58);
+  /* fundo branco com 58% opacidade */
+  background: #ffffff94;
+  /* espaço interno do item */
   padding: 10px;
+  /* margem abaixo separando os itens */
   margin-bottom: 8px;
+  /* cor do texto do item */
   color: #3f3744;
+  /* peso da fonte */
   font-weight: 800;
 }
-.mock-nav.active { border-color: #b7c939; background: rgba(183,201,57,.2); color: #1b1b25; }
+/* item ativo: borda verde e fundo verde translúcido — 20% opacidade */
+.mock-nav.active { border-color: #b7c939; background: #b7c93933; color: #1b1b25; }
+/* ponto decorativo azul claro */
 .mock-dot { width: 8px; height: 8px; border-radius: 999px; background: #adcbf8; margin-top: 5px; }
+/* área principal do mock */
 .mock-main { min-width: 0; padding: 18px; }
 .mock-top {
+  /* posição relativa para o pill absoluto */
   position: relative;
   display: block;
-  border-bottom: 1px solid rgba(27,27,37,.14);
+  /* borda inferior separando o topo do grid */
+  border-bottom: 1px solid #1b1b2524;
+  /* espaço abaixo da borda */
   padding-bottom: 14px;
 }
 .mock-top > div { width: 100%; min-width: 0; }
-.mock-top h2 { max-width: 370px; margin: 0; font: 900 24px/1 "Manrope", Arial, sans-serif; letter-spacing: -1.5px; text-transform: lowercase; }
+/* título do mock — compacto e em minúsculas */
+.mock-top h2 { max-width: 370px; margin: 0; font: 900 24px/1 "Manrope", Arial, sans-serif; letter-spacing: -1.2px; text-transform: lowercase; }
 .mock-top p {
   width: 100%;
   max-width: none;
   margin: 7px 0 0;
   color: #3f3744;
-  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
-  font-size: 12px;
-  line-height: 1.3;
-  text-transform: uppercase;
+  font-family: "Manrope", Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.45;
+  text-transform: none;
 }
+/* pill posicionada no canto superior direito do mock-top */
 .mock-top > .pill { position: absolute; top: 0; right: 0; }
 .pill {
+  /* pill em linha centralizada */
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  /* altura mínima da pill */
   min-height: 24px;
-  border: 1px solid rgba(27,27,37,.14);
+  /* borda ao redor da pill */
+  border: 1px solid #1b1b2524;
+  /* pill completamente redonda */
   border-radius: 999px;
+  /* fundo branco da pill */
   background: #ffffff;
+  /* espaço interno da pill */
   padding: 4px 9px;
+  /* cor do texto da pill */
   color: #3f3744;
+  /* fonte mono negrita da pill */
   font: 800 11px/1 "JetBrains Mono", Consolas, monospace;
+  /* impede quebra de linha */
   white-space: nowrap;
 }
+/* grid com 2 colunas para os cards do mock */
 .mock-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-top: 16px; }
-.mock-card { min-height: 128px; border: 1px solid rgba(27,27,37,.14); border-radius: 8px; background: #ffffff; padding: 14px; }
+.mock-card {
+  /* altura mínima do card */
+  min-height: 128px;
+  /* borda ao redor do card */
+  border: 1px solid #1b1b2524;
+  /* cantos arredondados */
+  border-radius: 8px;
+  /* fundo branco do card */
+  background: #ffffff;
+  /* espaço interno do card */
+  padding: 14px;
+}
+/* card que ocupa as 2 colunas */
 .mock-card.wide { grid-column: 1 / -1; }
+/* label do card — cinza e maiúsculas */
 .mock-label { color: #3f3744; font-size: 11px; font-weight: 900; text-transform: uppercase; }
+/* valor grande do card — número ou métrica em destaque */
 .mock-value { margin: 16px 0 0; font-size: 25px; font-weight: 900; }
-.bar { height: 9px; margin-top: 10px; border-radius: 999px; background: #f0f1ea; overflow: hidden; }
+.bar {
+  /* altura da barra de progresso */
+  height: 9px;
+  /* margem acima da barra */
+  margin-top: 10px;
+  /* cantos completamente redondos */
+  border-radius: 999px;
+  /* fundo cinza claro da barra */
+  background: #f0f1ea;
+  /* esconde o preenchimento que ultrapassar */
+  overflow: hidden;
+}
+/* preenchimento da barra: gradiente verde → lilás */
 .bar span { display: block; height: 100%; background: linear-gradient(90deg, #b7c939, #c987e1); }
 .mock-row {
+  /* linha com 2 colunas: rótulo 148px e valor flexível */
   display: grid;
   grid-template-columns: 148px minmax(0, 1fr);
+  /* espaço entre as colunas */
   gap: 12px;
+  /* alinha ao topo */
   align-items: start;
-  border-top: 1px solid rgba(27,27,37,.14);
+  /* borda superior separando cada linha */
+  border-top: 1px solid #1b1b2524;
+  /* espaço acima da borda */
   padding-top: 8px;
+  /* margem acima da linha */
   margin-top: 8px;
+  /* cor do texto da linha */
   color: #3f3744;
 }
 .mock-label + .mock-row { margin-top: 14px; }
+/* rótulo da linha em fonte mono verde escuro */
 .mock-row strong { color: #1b1b25; font-family: "JetBrains Mono", Consolas, monospace; font-size: 12px; }
+/* valor da linha */
 .mock-row span { min-width: 0; line-height: 1.25; }
 
 /* ── Landing sections ── */
+/* container centralizado com largura máxima */
 .lp-shell { max-width: 1120px; margin: 0 auto; padding: 0 28px; }
-.lp-section { padding: 72px 0; border-top: 1px solid rgba(27,27,37,.14); }
+.lp-section {
+  /* espaço vertical da seção */
+  padding: 72px 0;
+  /* borda superior separando seções */
+  border-top: 1px solid #1b1b2524;
+}
+/* seção alternada: fundo cinza claro */
 .lp-section--alt { background: #f0f1ea; }
+/* seção escura: fundo quase preto sem borda superior */
 .lp-section--dark { background: #1b1b25; border-top: none; }
 
+/* cabeçalho da seção */
 .lp-section-head { display: grid; gap: 16px; margin-bottom: 36px; }
-.lp-section-label { margin: 0; color: #6f7b18; font-size: 11px; font-weight: 900; letter-spacing: .12em; text-transform: uppercase; }
-.lp-section-title { max-width: 680px; margin: 0; font: 900 34px/1.08 "Manrope", Arial, sans-serif; letter-spacing: -1.5px; }
-.lp-section-copy { max-width: 500px; margin: 0; color: #3f3744; font-size: 15px; line-height: 1.45; }
+/* label acima do título de seção — verde escuro */
+.lp-section-label { margin: 0; color: #6f7b18; font-size: 11px; font-weight: 900; letter-spacing: 0.12em; text-transform: uppercase; }
+/* título da seção — grande e compacto */
+.lp-section-title { max-width: none; margin: 0; font: 900 34px/1.08 "Manrope", Arial, sans-serif; letter-spacing: -1.5px; text-transform: lowercase; }
+/* texto descritivo da seção */
+.lp-section-copy { max-width: none; margin: 0; color: #3f3744; font-size: 15px; line-height: 1.45; }
 
-/* Flow map */
-.lp-flow-map { border: 1px solid rgba(247,247,244,.14); border-radius: 8px; overflow: hidden; }
+/* Flow map — seção escura */
+.lp-flow-map {
+  /* borda levemente visível no fundo escuro — 14% opacidade de bege */
+  border: 1px solid #f7f7f424;
+  border-radius: 8px;
+  overflow: hidden;
+}
 .lp-flow-top {
+  /* topo do flow map em linha */
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  border-bottom: 1px solid rgba(247,247,244,.12);
+  /* borda inferior — 12% opacidade */
+  border-bottom: 1px solid #f7f7f41F;
+  /* espaço interno do topo */
   padding: 14px 18px;
 }
-.lp-flow-label { margin: 0; color: rgba(247,247,244,.82); font-size: 11px; font-weight: 900; letter-spacing: .1em; text-transform: uppercase; }
+/* label do flow map — bege com 82% opacidade */
+.lp-flow-label { margin: 0; color: #f7f7f4D1; font-size: 11px; font-weight: 900; letter-spacing: 0.1em; text-transform: uppercase; }
+/* pill verde do flow map */
 .lp-flow-pill { border-radius: 999px; background: #b7c939; padding: 5px 10px; color: #1b1b25; font: 800 11px/1 "JetBrains Mono", Consolas, monospace; }
+/* grade de 4 cards no flow map */
 .lp-flow-cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; padding: 16px; }
 .lp-flow-card {
+  /* altura mínima do card do flow */
   min-height: 108px;
+  /* layout vertical com espaço entre número e texto */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  border: 1px solid rgba(247,247,244,.14);
+  /* borda levemente visível — 14% opacidade */
+  border: 1px solid #f7f7f424;
   border-radius: 8px;
+  /* espaço interno do card */
   padding: 16px;
-  background: rgba(247,247,244,.06);
+  /* fundo sutilmente claro sobre escuro — 6% opacidade */
+  background: #f7f7f40F;
 }
+/* índice do card — verde-limão em mono */
 .lp-flow-index { color: #b7c939; font: 900 11px/1 "JetBrains Mono", Consolas, monospace; }
-.lp-flow-title { margin: 12px 0 0; color: rgba(247,247,244,.95); font-size: 17px; font-weight: 900; }
-.lp-flow-text { margin: 6px 0 0; color: rgba(247,247,244,.52); font-size: 12px; line-height: 1.45; }
+/* título do card — bege com 95% opacidade */
+.lp-flow-title { margin: 12px 0 0; color: #f7f7f4F2; font-size: 17px; font-weight: 900; }
+/* texto do card — bege com 52% opacidade */
+.lp-flow-text { margin: 6px 0 0; color: #f7f7f485; font-size: 12px; line-height: 1.45; }
 
 /* Feature cards */
+/* grade responsiva de cards de feature */
 .lp-features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; }
 .lp-feature-card {
-  border: 1px solid rgba(27,27,37,.14);
+  /* borda ao redor do card */
+  border: 1px solid #1b1b2524;
+  /* cantos arredondados */
   border-radius: 8px;
+  /* espaço interno do card */
   padding: 22px;
+  /* fundo branco */
   background: #ffffff;
-  transition: border-color .18s, transform .18s;
+  /* transição suave da borda e posição ao hover */
+  transition: border-color 0.18s, transform 0.18s;
 }
+/* hover: borda verde e sobe 2px */
 .lp-feature-card:hover { border-color: #b7c939; transform: translateY(-2px); }
-.lp-feature-kicker { display: inline-block; margin-bottom: 20px; color: #6f7b18; font-size: 10px; font-weight: 900; letter-spacing: .1em; text-transform: uppercase; }
+/* etiqueta acima do título do card — verde escuro */
+.lp-feature-kicker { display: inline-block; margin-bottom: 20px; color: #6f7b18; font-size: 10px; font-weight: 900; letter-spacing: 0.1em; text-transform: uppercase; }
+/* título do card de feature */
 .lp-feature-title { margin: 0; font-size: 17px; font-weight: 900; }
+/* descrição do card de feature */
 .lp-feature-desc { margin: 8px 0 0; color: #3f3744; font-size: 14px; line-height: 1.6; }
 
 /* Files grid */
+/* grade responsiva de arquivos */
 .lp-files-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 10px; }
-.lp-file-row { border: 1px solid rgba(27,27,37,.14); border-radius: 8px; padding: 14px 16px; background: #ffffff; }
+.lp-file-row {
+  /* borda ao redor de cada arquivo */
+  border: 1px solid #1b1b2524;
+  border-radius: 8px;
+  /* espaço interno da linha de arquivo */
+  padding: 14px 16px;
+  /* fundo branco */
+  background: #ffffff;
+}
+/* nome do arquivo em fonte mono verde escuro */
 .lp-file-name { display: block; font: 800 13px/1 "JetBrains Mono", Consolas, monospace; color: #6f7b18; }
-.lp-file-desc { display: block; margin-top: 5px; color: #3f3744; font-size: 12px; }
+/* descrição do arquivo */
+.lp-file-desc { display: block; margin-top: 5px; color: #3f3744; font-size: 14px; line-height: 1.6; }
 
 /* Steps */
 .lp-steps { display: grid; gap: 0; max-width: 700px; }
-.lp-step { display: grid; grid-template-columns: 52px 1fr; gap: 18px; border-bottom: 1px solid rgba(27,27,37,.14); padding: 22px 0; }
+.lp-step {
+  /* grade: número 52px + conteúdo flexível */
+  display: grid;
+  grid-template-columns: 52px 1fr;
+  gap: 18px;
+  /* borda inferior separando os passos */
+  border-bottom: 1px solid #1b1b2524;
+  /* espaço vertical de cada passo */
+  padding: 22px 0;
+}
+/* primeiro passo sem padding acima */
 .lp-step:first-child { padding-top: 0; }
-.lp-step-number { width: 52px; height: 52px; display: grid; place-items: center; border-radius: 8px; background: #1b1b25; color: #b7c939; font: 900 14px/1 "JetBrains Mono", Consolas, monospace; flex-shrink: 0; }
+.lp-step-number {
+  /* quadrado do número do passo */
+  width: 52px;
+  height: 52px;
+  display: grid;
+  place-items: center;
+  border-radius: 8px;
+  /* fundo escuro do número */
+  background: #1b1b25;
+  /* número em verde-limão */
+  color: #b7c939;
+  /* fonte mono negrita do número */
+  font: 900 14px/1 "JetBrains Mono", Consolas, monospace;
+  flex-shrink: 0;
+}
+/* título do passo */
 .lp-step-title { margin: 0; font-size: 17px; font-weight: 900; }
+/* descrição do passo */
 .lp-step-desc { margin: 6px 0 0; color: #3f3744; font-size: 14px; line-height: 1.6; }
-.lp-step-detail { display: inline-block; margin-top: 10px; color: #6f7b18; font-size: 10px; font-weight: 900; letter-spacing: .1em; text-transform: uppercase; }
+/* detalhe extra do passo — verde escuro e maiúsculas */
+.lp-step-detail { display: inline-block; margin-top: 10px; color: #6f7b18; font-size: 10px; font-weight: 900; letter-spacing: 0.1em; text-transform: uppercase; }
 
 /* Final CTA */
-.lp-final { padding: 72px 0; background: #1b1b25; border-top: none; }
+.lp-final {
+  /* seção final escura */
+  padding: 72px 0;
+  background: #1b1b25;
+  border-top: none;
+}
 .lp-final-inner { display: flex; flex-wrap: wrap; gap: 28px; align-items: center; justify-content: space-between; }
-.lp-final-title { max-width: 580px; margin: 0; font: 900 38px/1.06 "Manrope", Arial, sans-serif; color: #f7f7f4; letter-spacing: -1.5px; }
-.lp-final-text { max-width: 500px; margin: 12px 0 0; color: rgba(247,247,244,.65); font-size: 16px; line-height: 1.45; }
-.lp-footer { border-top: 1px solid rgba(247,247,244,.1); padding: 22px 0; background: #1b1b25; }
-.lp-footer-text { margin: 0; color: rgba(247,247,244,.38); font-size: 12px; }
+/* título do CTA final — bege claro */
+.lp-final-title { max-width: 580px; margin: 0; font: 900 38px/1.06 "Manrope", Arial, sans-serif; color: #f7f7f4; letter-spacing: -1.5px; text-transform: lowercase; }
+/* texto do CTA final — bege com 65% opacidade */
+.lp-final-text { max-width: 500px; margin: 12px 0 0; color: #f7f7f4A6; font-size: 16px; line-height: 1.45; }
+.lp-footer {
+  /* borda superior do footer — bege com 10% opacidade */
+  border-top: 1px solid #f7f7f41A;
+  /* espaço vertical do footer */
+  padding: 22px 0;
+  /* fundo escuro do footer */
+  background: #1b1b25;
+}
+/* texto do footer — bege com 38% opacidade */
+.lp-footer-text { margin: 0; color: #f7f7f461; font-size: 12px; }
 
 /* ── Animações ── */
 @keyframes step-enter {
   from { opacity: 0; transform: translateX(20px); }
   to { opacity: 1; transform: translateX(0); }
 }
+/* animação de entrada dos steps — desliza da direita */
 .step-animate { animation: step-enter 300ms ease-out forwards; }
 
 @keyframes fade-in-up {
   from { opacity: 0; transform: translateY(16px); }
   to { opacity: 1; transform: translateY(0); }
 }
+/* animação de fade subindo */
 .animate-fade-in-up { animation: fade-in-up 400ms ease-out forwards; }
 
 /* ── Responsivo ── */
 @media (max-width: 1080px) {
+  /* abaixo de 1080px: empilha as colunas do hero */
   .intro { grid-template-columns: 1fr; }
-  .intro-left { border: 0; border-bottom: 1px solid rgba(27,27,37,.14); }
+  /* remove borda direita, adiciona borda inferior */
+  .intro-left { border: 0; border-bottom: 1px solid #1b1b2524; }
+  /* flow map em 2 colunas */
   .lp-flow-cards { grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width: 720px) {
+  /* espaçamento reduzido no mobile */
   .intro-left, .intro-right { padding: 16px; }
+  /* título menor no mobile — 36px */
   .intro-title { font-size: 36px; }
   .intro-actions { margin-bottom: 8px; }
+  /* preview-board em coluna única */
   .preview-board { grid-template-columns: 1fr; }
-  .mock-side { border-right: 0; border-bottom: 1px solid rgba(27,27,37,.14); }
+  /* sidebar do mock sem borda direita, com borda inferior */
+  .mock-side { border-right: 0; border-bottom: 1px solid #1b1b2524; }
+  /* mock-top em coluna no mobile */
   .mock-top { display: flex; flex-direction: column; gap: 10px; }
+  /* pill não mais absoluta no mobile */
   .mock-top > .pill { position: static; align-self: flex-start; }
+  /* mock-grid em coluna única no mobile */
   .mock-grid { grid-template-columns: 1fr; }
+  /* flow-cards em coluna única no mobile */
   .lp-flow-cards { grid-template-columns: 1fr; }
+  /* títulos de seção e CTA menores no mobile — 26px */
   .lp-section-title, .lp-final-title { font-size: 26px; }
+  /* padding vertical menor das seções no mobile */
   .lp-section { padding: 48px 0; }
-}
-@media (min-width: 900px) {
-  .lp-section-head { grid-template-columns: 1fr 0.6fr; align-items: end; }
 }

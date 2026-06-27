@@ -26,68 +26,168 @@ export function StepBasicos({ data, onChange, onNext }: Props) {
     data.nomeProjeto.trim() && data.tagline.trim() && data.tipoProjeto;
 
   return (
-    <div className="space-y-6 step-animate">
+    <div
+      className="step-animate"
+      style={{
+        /* espaço vertical entre as seções do step */
+        display: "flex",
+        flexDirection: "column",
+        gap: "24px",
+      }}
+    >
+      {/* Cabeçalho do step */}
       <div>
-        <h2 className="text-2xl font-bold text-white mb-1">Sobre o projeto</h2>
-        <p className="text-zinc-500 text-sm">
+        <h2
+          style={{
+            /* tamanho do título do step */
+            fontSize: "24px",
+            /* peso da fonte — máximo */
+            fontWeight: 900,
+            /* cor do título — escuro */
+            color: "#1b1b25",
+            /* remove margem padrão */
+            margin: "0 0 4px",
+            /* espaçamento negativo entre letras */
+            letterSpacing: "-0.5px",
+          }}
+        >
+          sobre o projeto
+        </h2>
+        <p
+          style={{
+            /* cor do subtítulo — cinza médio */
+            color: "#3f3744",
+            /* tamanho da fonte do subtítulo */
+            fontSize: "13px",
+            margin: 0,
+          }}
+        >
           Não precisa ser perfeito — comece pelo básico.
         </p>
       </div>
 
-      <div className="space-y-4">
+      {/* Campos do formulário */}
+      <div
+        style={{
+          /* espaço entre os campos */
+          display: "flex",
+          flexDirection: "column",
+          gap: "16px",
+        }}
+      >
+        {/* Campo: nome do projeto */}
         <div>
-          <label className="block text-sm font-medium text-zinc-300 mb-1.5">
-            Nome do projeto <span className="text-emerald-400">*</span>
+          <label className="label">
+            Nome do projeto{" "}
+            <span style={{ color: "#b7c939" }}>*</span>
           </label>
           <input
             type="text"
             value={data.nomeProjeto}
             onChange={(e) => onChange({ nomeProjeto: e.target.value })}
             placeholder="Ex: TaskFlow, ClientesPro, MeuSaaS..."
-            className="w-full bg-zinc-900 border border-zinc-700 rounded-lg px-4 py-3 text-white placeholder-zinc-600 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500/50 transition-colors"
+            className="input"
           />
         </div>
 
+        {/* Campo: tagline */}
         <div>
-          <label className="block text-sm font-medium text-zinc-300 mb-1.5">
-            Tagline <span className="text-emerald-400">*</span>
+          <label className="label">
+            Tagline{" "}
+            <span style={{ color: "#b7c939" }}>*</span>
           </label>
           <input
             type="text"
             value={data.tagline}
             onChange={(e) => onChange({ tagline: e.target.value })}
             placeholder="Uma frase que resume o projeto"
-            className="w-full bg-zinc-900 border border-zinc-700 rounded-lg px-4 py-3 text-white placeholder-zinc-600 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500/50 transition-colors"
+            className="input"
           />
         </div>
 
+        {/* Campo: tipo de projeto — grade de botões */}
         <div>
-          <label className="block text-sm font-medium text-zinc-300 mb-2">
-            Tipo de projeto <span className="text-emerald-400">*</span>
+          <label className="label">
+            Tipo de projeto{" "}
+            <span style={{ color: "#b7c939" }}>*</span>
           </label>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-            {TIPOS_PROJETO.map((tipo) => (
-              <button
-                key={tipo.label}
-                onClick={() => onChange({ tipoProjeto: tipo.label })}
-                className={`text-left px-4 py-3 rounded-lg border transition-all ${
-                  data.tipoProjeto === tipo.label
-                    ? "bg-emerald-500/15 border-emerald-500/60 text-white"
-                    : "bg-zinc-900 border-zinc-800 text-zinc-300 hover:border-zinc-600"
-                }`}
-              >
-                <div className="text-sm font-medium">{tipo.label}</div>
-                <div className="text-xs text-zinc-500 mt-0.5">{tipo.desc}</div>
-              </button>
-            ))}
+          <div
+            style={{
+              /* grade de 2 colunas para os tipos */
+              display: "grid",
+              gridTemplateColumns: "repeat(2, 1fr)",
+              /* espaço entre os botões */
+              gap: "8px",
+            }}
+          >
+            {TIPOS_PROJETO.map((tipo) => {
+              const selecionado = data.tipoProjeto === tipo.label;
+              return (
+                <button
+                  key={tipo.label}
+                  onClick={() => onChange({ tipoProjeto: tipo.label })}
+                  style={{
+                    /* alinhamento do texto à esquerda */
+                    textAlign: "left",
+                    /* espaço interno do botão de tipo */
+                    padding: "12px 14px",
+                    /* cantos arredondados */
+                    borderRadius: "8px",
+                    /* borda: verde se selecionado, cinza se não */
+                    border: selecionado ? "1px solid #b7c939" : "1px solid #1b1b2524",
+                    /* fundo: verde translúcido se selecionado, cinza claro se não */
+                    background: selecionado ? "#b7c93918" : "#f0f1ea",
+                    /* transição suave de todas as propriedades */
+                    transition: "all 0.15s",
+                    cursor: "pointer",
+                  }}
+                >
+                  <div
+                    style={{
+                      /* tamanho do nome do tipo */
+                      fontSize: "13px",
+                      /* peso negrito */
+                      fontWeight: 700,
+                      /* cor: escuro se selecionado, cinza se não */
+                      color: selecionado ? "#1b1b25" : "#3f3744",
+                    }}
+                  >
+                    {tipo.label}
+                  </div>
+                  <div
+                    style={{
+                      /* tamanho da descrição do tipo */
+                      fontSize: "11px",
+                      /* cor da descrição — cinza médio */
+                      color: "#3f3744",
+                      /* margem acima da descrição */
+                      marginTop: "2px",
+                      /* opacidade reduzida na descrição */
+                      opacity: 0.7,
+                    }}
+                  >
+                    {tipo.desc}
+                  </div>
+                </button>
+              );
+            })}
           </div>
         </div>
       </div>
 
+      {/* Botão continuar */}
       <button
         onClick={onNext}
         disabled={!podeAvancar}
-        className="w-full py-3.5 bg-emerald-500 hover:bg-emerald-400 disabled:bg-zinc-800 disabled:text-zinc-600 text-black font-semibold rounded-lg transition-all glow-emerald"
+        className="btn primary full"
+        style={{
+          /* altura maior para o botão principal */
+          minHeight: "44px",
+          /* tamanho da fonte do botão */
+          fontSize: "13px",
+          /* opacidade reduzida quando desabilitado */
+          opacity: podeAvancar ? 1 : 0.45,
+        }}
       >
         Continuar
       </button>

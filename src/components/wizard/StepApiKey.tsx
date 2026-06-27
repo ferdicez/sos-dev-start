@@ -25,7 +25,14 @@ export function StepApiKey({ onConfirmar }: Props) {
   }
 
   return (
-    <div style={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}>
+    <div
+      style={{
+        /* ocupa a altura total da viewport */
+        minHeight: "100vh",
+        display: "flex",
+        flexDirection: "column",
+      }}
+    >
       {/* Topbar */}
       <header className="topbar">
         <div className="topbar-inner">
@@ -42,23 +49,83 @@ export function StepApiKey({ onConfirmar }: Props) {
         </div>
       </header>
 
-      {/* Body */}
-      <div style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center", padding: "40px 16px" }}>
-        <div style={{ width: "100%", maxWidth: 420 }}>
-
+      {/* Conteúdo centralizado */}
+      <div
+        style={{
+          /* ocupa o espaço restante e centraliza */
+          flex: 1,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          /* espaço ao redor do card */
+          padding: "40px 16px",
+        }}
+      >
+        <div
+          style={{
+            width: "100%",
+            /* largura máxima do card de API key */
+            maxWidth: "420px",
+          }}
+        >
           {/* Card principal */}
-          <div style={{ background: "#fff", border: "1px solid rgba(27,27,37,.14)", borderRadius: 8, overflow: "hidden", boxShadow: "0 18px 42px rgba(27,27,37,.08)" }}>
-            <div style={{ background: "#f0f1ea", borderBottom: "1px solid rgba(27,27,37,.14)", padding: "14px 18px" }}>
-              <p style={{ margin: 0, fontSize: 12, fontWeight: 900, color: "#3f3744", textTransform: "uppercase", letterSpacing: ".08em" }}>
+          <div
+            style={{
+              /* fundo branco do card */
+              background: "#ffffff",
+              /* borda ao redor do card */
+              border: "1px solid #1b1b2524",
+              borderRadius: "8px",
+              overflow: "hidden",
+              /* sombra suave abaixo do card */
+              boxShadow: "0 18px 42px #1b1b2514",
+            }}
+          >
+            {/* Cabeçalho do card */}
+            <div
+              style={{
+                /* fundo cinza claro do cabeçalho */
+                background: "#f0f1ea",
+                /* borda inferior separando do corpo */
+                borderBottom: "1px solid #1b1b2524",
+                /* espaço interno do cabeçalho */
+                padding: "14px 18px",
+              }}
+            >
+              <p
+                style={{
+                  margin: 0,
+                  /* tamanho da fonte do título do cabeçalho */
+                  fontSize: "12px",
+                  fontWeight: 900,
+                  /* cor do título */
+                  color: "#3f3744",
+                  textTransform: "uppercase",
+                  /* espaçamento entre letras */
+                  letterSpacing: "0.08em",
+                }}
+              >
                 configure sua chave api
               </p>
             </div>
-            <div style={{ padding: 18 }}>
-              <p style={{ margin: "0 0 16px", color: "#3f3744", fontSize: 13, lineHeight: 1.55 }}>
+
+            {/* Corpo do card */}
+            <div style={{ padding: "18px" }}>
+              <p
+                style={{
+                  /* margem abaixo do texto explicativo */
+                  margin: "0 0 16px",
+                  /* cor do texto */
+                  color: "#3f3744",
+                  fontSize: "13px",
+                  lineHeight: 1.55,
+                }}
+              >
                 A IA que gera o PRD roda na Groq — gratuita e rápida. Sua chave fica salva só no seu navegador e nunca passa pelo nosso servidor.
               </p>
 
-              <div className="field">
+              {/* Campo da API Key */}
+              <div style={{ marginBottom: "12px" }}>
                 <label className="label" htmlFor="apikey">Groq API Key</label>
                 <div style={{ position: "relative" }}>
                   <input
@@ -69,47 +136,168 @@ export function StepApiKey({ onConfirmar }: Props) {
                     onChange={(e) => { setChave(e.target.value); setErro(""); }}
                     onKeyDown={(e) => e.key === "Enter" && confirmar()}
                     placeholder="gsk_..."
-                    style={{ paddingRight: 56 }}
+                    style={{
+                      /* espaço à direita para o botão ver/ocultar */
+                      paddingRight: "56px",
+                    }}
                   />
+                  {/* botão ver/ocultar a chave */}
                   <button
                     type="button"
                     onClick={() => setMostrar(!mostrar)}
-                    style={{ position: "absolute", right: 10, top: "50%", transform: "translateY(-50%)", background: "none", border: "none", padding: 0, fontSize: 11, color: "#3f3744", cursor: "pointer" }}
+                    style={{
+                      /* posicionado no centro vertical do input */
+                      position: "absolute",
+                      right: "10px",
+                      top: "50%",
+                      transform: "translateY(-50%)",
+                      background: "none",
+                      border: "none",
+                      padding: 0,
+                      /* tamanho da fonte do botão ver/ocultar */
+                      fontSize: "11px",
+                      /* cor do botão */
+                      color: "#3f3744",
+                      cursor: "pointer",
+                    }}
                   >
                     {mostrar ? "ocultar" : "ver"}
                   </button>
                 </div>
-                {erro && <p style={{ margin: "6px 0 0", color: "#b44b7a", fontSize: 11 }}>{erro}</p>}
+                {/* mensagem de erro */}
+                {erro && (
+                  <p
+                    style={{
+                      margin: "6px 0 0",
+                      /* cor do texto de erro — rosa */
+                      color: "#b44b7a",
+                      fontSize: "11px",
+                    }}
+                  >
+                    {erro}
+                  </p>
+                )}
               </div>
 
-              <button onClick={confirmar} className="btn primary full" style={{ marginTop: 4 }}>
+              {/* Botão continuar */}
+              <button
+                onClick={confirmar}
+                className="btn primary full"
+                style={{ minHeight: "40px" }}
+              >
                 continuar
               </button>
             </div>
           </div>
 
-          {/* Instruções */}
-          <div style={{ marginTop: 14, background: "#fff", border: "1px solid rgba(27,27,37,.14)", borderRadius: 8, overflow: "hidden" }}>
-            <div style={{ background: "#f0f1ea", borderBottom: "1px solid rgba(27,27,37,.14)", padding: "10px 14px" }}>
-              <p style={{ margin: 0, fontSize: 11, fontWeight: 900, color: "#6f7b18", textTransform: "uppercase", letterSpacing: ".1em" }}>
+          {/* Card de instruções */}
+          <div
+            style={{
+              /* margem acima do card de instruções */
+              marginTop: "14px",
+              background: "#ffffff",
+              border: "1px solid #1b1b2524",
+              borderRadius: "8px",
+              overflow: "hidden",
+            }}
+          >
+            {/* Cabeçalho do card de instruções */}
+            <div
+              style={{
+                background: "#f0f1ea",
+                borderBottom: "1px solid #1b1b2524",
+                padding: "10px 14px",
+              }}
+            >
+              <p
+                style={{
+                  margin: 0,
+                  fontSize: "11px",
+                  fontWeight: 900,
+                  /* cor do label — verde escuro */
+                  color: "#6f7b18",
+                  textTransform: "uppercase",
+                  letterSpacing: "0.1em",
+                }}
+              >
                 como obter sua chave grátis
               </p>
             </div>
-            <div style={{ padding: "12px 14px", display: "grid", gap: 10 }}>
+
+            {/* Passos de instrução */}
+            <div
+              style={{
+                padding: "12px 14px",
+                display: "flex",
+                flexDirection: "column",
+                gap: "10px",
+              }}
+            >
               {[
                 { n: "1", texto: <>Acesse <strong style={{ color: "#1b1b25" }}>console.groq.com</strong> e crie uma conta gratuita</> },
                 { n: "2", texto: <>No menu lateral, clique em <strong style={{ color: "#1b1b25" }}>API Keys</strong></> },
                 { n: "3", texto: <>Clique em <strong style={{ color: "#1b1b25" }}>Create API Key</strong>, copie e cole aqui</> },
               ].map(({ n, texto }) => (
-                <div key={n} style={{ display: "grid", gridTemplateColumns: "20px 1fr", gap: 8, alignItems: "start" }}>
-                  <span style={{ width: 20, height: 20, borderRadius: 4, background: "#1b1b25", color: "#b7c939", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 10, fontWeight: 900, flexShrink: 0 }}>{n}</span>
-                  <span style={{ fontSize: 12, color: "#3f3744", lineHeight: 1.5 }}>{texto}</span>
+                <div
+                  key={n}
+                  style={{
+                    display: "grid",
+                    /* grid: número 20px + texto flexível */
+                    gridTemplateColumns: "20px 1fr",
+                    gap: "8px",
+                    alignItems: "start",
+                  }}
+                >
+                  {/* número do passo */}
+                  <span
+                    style={{
+                      /* tamanho do número do passo */
+                      width: "20px",
+                      height: "20px",
+                      borderRadius: "4px",
+                      /* fundo escuro do número */
+                      background: "#1b1b25",
+                      /* número em verde-limão */
+                      color: "#b7c939",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      /* tamanho da fonte do número */
+                      fontSize: "10px",
+                      fontWeight: 900,
+                      flexShrink: 0,
+                    }}
+                  >
+                    {n}
+                  </span>
+                  {/* texto do passo */}
+                  <span
+                    style={{
+                      fontSize: "13px",
+                      /* cor do texto do passo */
+                      color: "#3f3744",
+                      lineHeight: 1.55,
+                    }}
+                  >
+                    {texto}
+                  </span>
                 </div>
               ))}
             </div>
           </div>
 
-          <p style={{ textAlign: "center", fontSize: 11, color: "rgba(27,27,37,.35)", marginTop: 14 }}>
+          {/* Nota sobre privacidade */}
+          <p
+            style={{
+              textAlign: "center",
+              /* tamanho da fonte da nota */
+              fontSize: "11px",
+              /* cor da nota — muito translúcida */
+              color: "#1b1b2559",
+              /* margem acima da nota */
+              marginTop: "14px",
+            }}
+          >
             Sua chave fica apenas no localStorage do seu navegador.
           </p>
         </div>

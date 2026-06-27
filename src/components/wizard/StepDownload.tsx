@@ -32,51 +32,15 @@ export function StepDownload({ prd, stackEscolhida, onNovoProjeto }: Props) {
 
   useEffect(() => {
     const lista: ArquivoGerado[] = [
-      {
-        nome: "CLAUDE.md",
-        conteudo: gerarCLAUDEmd(prd, stackEscolhida),
-        descricao: "Instruções completas para o agente Claude Code",
-      },
-      {
-        nome: "AGENTS.md",
-        conteudo: gerarAGENTSmd(prd, stackEscolhida),
-        descricao: "Instruções para outros agentes (Codex, Copilot, etc.)",
-      },
-      {
-        nome: "plano.md",
-        conteudo: gerarPlanomd(prd),
-        descricao: "Plano de desenvolvimento em fases com tarefas",
-      },
-      {
-        nome: "sos.md",
-        conteudo: gerarSOSmd(prd, stackEscolhida),
-        descricao: "Guia de sobrevivência no terminal",
-      },
-      {
-        nome: ".env.example",
-        conteudo: gerarEnvExample(prd),
-        descricao: "Template das variáveis de ambiente",
-      },
-      {
-        nome: ".gitignore",
-        conteudo: gerarGitignore(),
-        descricao: "Arquivos que o Git deve ignorar",
-      },
-      {
-        nome: "README.md",
-        conteudo: gerarREADME(prd, stackEscolhida),
-        descricao: "Documentação principal do projeto",
-      },
-      {
-        nome: ".claude/settings.json",
-        conteudo: gerarClaudeSettings(),
-        descricao: "Permissões seguras pré-configuradas para o agente",
-      },
-      {
-        nome: "PRD.md",
-        conteudo: gerarPRDMarkdown(prd),
-        descricao: "Product Requirements Document completo",
-      },
+      { nome: "CLAUDE.md", conteudo: gerarCLAUDEmd(prd, stackEscolhida), descricao: "Instruções completas para o agente Claude Code" },
+      { nome: "AGENTS.md", conteudo: gerarAGENTSmd(prd, stackEscolhida), descricao: "Instruções para outros agentes (Codex, Copilot, etc.)" },
+      { nome: "plano.md", conteudo: gerarPlanomd(prd), descricao: "Plano de desenvolvimento em fases com tarefas" },
+      { nome: "sos.md", conteudo: gerarSOSmd(prd, stackEscolhida), descricao: "Guia de sobrevivência no terminal" },
+      { nome: ".env.example", conteudo: gerarEnvExample(prd), descricao: "Template das variáveis de ambiente" },
+      { nome: ".gitignore", conteudo: gerarGitignore(), descricao: "Arquivos que o Git deve ignorar" },
+      { nome: "README.md", conteudo: gerarREADME(prd, stackEscolhida), descricao: "Documentação principal do projeto" },
+      { nome: ".claude/settings.json", conteudo: gerarClaudeSettings(), descricao: "Permissões seguras pré-configuradas para o agente" },
+      { nome: "PRD.md", conteudo: gerarPRDMarkdown(prd), descricao: "Product Requirements Document completo" },
     ];
     setArquivos(lista);
   }, [prd, stackEscolhida]);
@@ -116,81 +80,255 @@ export function StepDownload({ prd, stackEscolhida, onNovoProjeto }: Props) {
   };
 
   return (
-    <div className="space-y-6 step-animate">
-      <div className="text-center space-y-2">
-        <h2 className="text-2xl font-bold text-white">Pronto!</h2>
-        <p className="text-zinc-400 text-sm max-w-sm mx-auto">
-          Projeto <span className="text-emerald-400 font-medium">{prd.nomeProjeto}</span> configurado.
-          Baixe o ZIP e coloque os arquivos na raiz do seu projeto.
+    <div
+      className="step-animate"
+      style={{
+        /* espaço vertical entre os blocos da tela de download */
+        display: "flex",
+        flexDirection: "column",
+        gap: "24px",
+      }}
+    >
+      {/* Cabeçalho centralizado */}
+      <div style={{ textAlign: "center", display: "flex", flexDirection: "column", gap: "8px" }}>
+        <h2
+          style={{
+            /* tamanho do título "Pronto!" */
+            fontSize: "24px",
+            fontWeight: 900,
+            /* cor do título */
+            color: "#1b1b25",
+            margin: 0,
+            letterSpacing: "-0.5px",
+          }}
+        >
+          Pronto!
+        </h2>
+        <p
+          style={{
+            /* cor do subtítulo */
+            color: "#3f3744",
+            /* tamanho da fonte do subtítulo */
+            fontSize: "13px",
+            margin: 0,
+            /* largura máxima do subtítulo */
+            maxWidth: "360px",
+            /* centraliza o subtítulo */
+            marginLeft: "auto",
+            marginRight: "auto",
+            lineHeight: 1.5,
+          }}
+        >
+          Projeto{" "}
+          <span style={{ color: "#6f7b18", fontWeight: 700 }}>{prd.nomeProjeto}</span>{" "}
+          configurado. Baixe o ZIP e coloque os arquivos na raiz do seu projeto.
         </p>
       </div>
 
-      {/* Stack escolhida */}
-      <div className="bg-zinc-900 border border-zinc-800 rounded-lg p-4">
-        <p className="text-xs text-zinc-600 uppercase mb-2">Stack gerada</p>
-        <p className="text-sm font-medium text-zinc-200 mb-2">{stackEscolhida.nome}</p>
-        <div className="grid grid-cols-2 gap-x-6 gap-y-1 text-xs">
+      {/* Card da stack escolhida */}
+      <div
+        style={{
+          /* fundo cinza claro do card */
+          background: "#f0f1ea",
+          /* borda ao redor do card */
+          border: "1px solid #1b1b2524",
+          borderRadius: "8px",
+          /* espaço interno do card */
+          padding: "16px",
+        }}
+      >
+        {/* label "Stack gerada" */}
+        <p
+          style={{
+            fontSize: "10px",
+            color: "#3f3744",
+            fontWeight: 900,
+            textTransform: "uppercase",
+            letterSpacing: "0.08em",
+            /* margem abaixo do label */
+            margin: "0 0 8px",
+            opacity: 0.6,
+          }}
+        >
+          Stack gerada
+        </p>
+        <p
+          style={{
+            /* nome da stack em destaque */
+            fontSize: "13px",
+            fontWeight: 700,
+            color: "#1b1b25",
+            /* margem abaixo do nome */
+            margin: "0 0 8px",
+          }}
+        >
+          {stackEscolhida.nome}
+        </p>
+        {/* grade de detalhes da stack */}
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "4px 20px" }}>
           {[
             ["Frontend", stackEscolhida.frontend],
             ["Backend", stackEscolhida.backend],
             ["Banco", stackEscolhida.banco],
             ["Hosting", stackEscolhida.hosting],
           ].map(([k, v]) => (
-            <div key={k}>
-              <span className="text-zinc-600">{k}: </span>
-              <span className="text-zinc-300">{v}</span>
+            <div key={k} style={{ fontSize: "12px" }}>
+              <span style={{ color: "#3f3744", opacity: 0.6 }}>{k}: </span>
+              <span style={{ color: "#1b1b25", fontWeight: 600 }}>{v}</span>
             </div>
           ))}
         </div>
       </div>
 
+      {/* Botão principal de download */}
       <button
         onClick={baixarZIP}
-        className="w-full py-4 bg-emerald-500 hover:bg-emerald-400 text-black font-bold rounded-xl text-lg transition-all glow-emerald"
+        className="btn primary full"
+        style={{
+          /* altura maior para o botão principal */
+          minHeight: "56px",
+          /* tamanho da fonte do botão */
+          fontSize: "16px",
+          fontWeight: 900,
+          borderRadius: "10px",
+        }}
       >
         {baixado ? "Baixar novamente (.zip)" : "Baixar pacote completo (.zip)"}
       </button>
 
+      {/* Próximos passos — aparece após o primeiro download */}
       {baixado && (
-        <div className="bg-emerald-500/10 border border-emerald-500/20 rounded-lg p-4 space-y-2">
-          <p className="text-emerald-400 font-semibold text-sm">Próximos passos:</p>
-          <ol className="space-y-1.5 text-sm text-zinc-300">
-            <li className="flex gap-2">
-              <span className="text-emerald-500 font-bold shrink-0">1.</span>
-              Extraia o ZIP na raiz da pasta do seu projeto
-            </li>
-            <li className="flex gap-2">
-              <span className="text-emerald-500 font-bold shrink-0">2.</span>
-              Copie <code className="text-emerald-400">.env.example</code> para{" "}
-              <code className="text-emerald-400">.env.local</code> e preencha os valores reais
-            </li>
-            <li className="flex gap-2">
-              <span className="text-emerald-500 font-bold shrink-0">3.</span>
-              Abra a pasta no terminal
-            </li>
-            <li className="flex gap-2">
-              <span className="text-emerald-500 font-bold shrink-0">4.</span>
-              Diga ao Claude: <code className="text-emerald-400">iniciar projeto</code>
-            </li>
+        <div
+          style={{
+            /* fundo verde translúcido do bloco de próximos passos */
+            background: "#b7c93918",
+            /* borda verde translúcida */
+            border: "1px solid #b7c93933",
+            borderRadius: "8px",
+            /* espaço interno do bloco */
+            padding: "16px",
+            display: "flex",
+            flexDirection: "column",
+            gap: "8px",
+          }}
+        >
+          <p
+            style={{
+              /* título dos próximos passos */
+              color: "#6f7b18",
+              fontWeight: 700,
+              fontSize: "13px",
+              margin: 0,
+            }}
+          >
+            Próximos passos:
+          </p>
+          <ol
+            style={{
+              margin: 0,
+              padding: 0,
+              listStyle: "none",
+              display: "flex",
+              flexDirection: "column",
+              gap: "6px",
+            }}
+          >
+            {[
+              <>Extraia o ZIP na raiz da pasta do seu projeto</>,
+              <>Copie <code style={{ color: "#6f7b18", fontSize: "11px", background: "#b7c93918", padding: "1px 5px", borderRadius: "3px" }}>.env.example</code> para <code style={{ color: "#6f7b18", fontSize: "11px", background: "#b7c93918", padding: "1px 5px", borderRadius: "3px" }}>.env.local</code> e preencha os valores reais</>,
+              <>Abra a pasta no terminal</>,
+              <>Diga ao Claude: <code style={{ color: "#6f7b18", fontSize: "11px", background: "#b7c93918", padding: "1px 5px", borderRadius: "3px" }}>iniciar projeto</code></>,
+            ].map((texto, i) => (
+              <li
+                key={i}
+                style={{
+                  display: "flex",
+                  gap: "8px",
+                  /* tamanho da fonte dos passos */
+                  fontSize: "13px",
+                  /* cor do texto dos passos */
+                  color: "#1b1b25",
+                }}
+              >
+                {/* número do passo em verde */}
+                <span style={{ color: "#6f7b18", fontWeight: 900, flexShrink: 0 }}>{i + 1}.</span>
+                {texto}
+              </li>
+            ))}
           </ol>
         </div>
       )}
 
+      {/* Lista de arquivos incluídos */}
       <div>
-        <p className="text-xs text-zinc-600 uppercase mb-3">Arquivos incluídos ({arquivos.length})</p>
-        <div className="space-y-2">
+        <p
+          style={{
+            /* label da lista de arquivos */
+            fontSize: "10px",
+            color: "#3f3744",
+            fontWeight: 900,
+            textTransform: "uppercase",
+            letterSpacing: "0.08em",
+            /* margem abaixo do label */
+            margin: "0 0 10px",
+            opacity: 0.6,
+          }}
+        >
+          Arquivos incluídos ({arquivos.length})
+        </p>
+        <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
           {arquivos.map((arquivo) => (
             <div
               key={arquivo.nome}
-              className="flex items-center justify-between bg-zinc-900 border border-zinc-800 rounded-lg px-4 py-3"
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+                /* fundo cinza claro de cada linha */
+                background: "#f0f1ea",
+                /* borda ao redor de cada linha */
+                border: "1px solid #1b1b2524",
+                borderRadius: "8px",
+                /* espaço interno da linha */
+                padding: "10px 14px",
+              }}
             >
               <div>
-                <p className="text-sm font-mono text-zinc-200">{arquivo.nome}</p>
-                <p className="text-xs text-zinc-600">{arquivo.descricao}</p>
+                <p
+                  style={{
+                    /* nome do arquivo em fonte mono */
+                    fontSize: "12px",
+                    fontFamily: '"JetBrains Mono", Consolas, monospace',
+                    /* cor do nome do arquivo — escuro */
+                    color: "#1b1b25",
+                    fontWeight: 600,
+                    margin: "0 0 2px",
+                  }}
+                >
+                  {arquivo.nome}
+                </p>
+                <p style={{ fontSize: "11px", color: "#3f3744", opacity: 0.6, margin: 0 }}>{arquivo.descricao}</p>
               </div>
               <button
                 onClick={() => baixarArquivo(arquivo)}
-                className="text-xs text-zinc-600 hover:text-emerald-400 transition-colors px-2 py-1 ml-3 shrink-0"
+                style={{
+                  background: "none",
+                  border: "none",
+                  /* tamanho da fonte do botão baixar individual */
+                  fontSize: "11px",
+                  /* cor do botão baixar — cinza que vira verde no hover */
+                  color: "#3f3744",
+                  cursor: "pointer",
+                  /* espaço interno do botão baixar */
+                  padding: "4px 8px",
+                  /* margem à esquerda separando do texto */
+                  marginLeft: "12px",
+                  flexShrink: 0,
+                  opacity: 0.6,
+                  transition: "opacity 0.15s",
+                }}
+                onMouseEnter={(e) => (e.currentTarget.style.opacity = "1")}
+                onMouseLeave={(e) => (e.currentTarget.style.opacity = "0.6")}
               >
                 baixar
               </button>
@@ -199,9 +337,17 @@ export function StepDownload({ prd, stackEscolhida, onNovoProjeto }: Props) {
         </div>
       </div>
 
+      {/* Botão criar outro projeto */}
       <button
         onClick={onNovoProjeto}
-        className="w-full py-2.5 bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 text-zinc-400 font-medium rounded-lg transition-all text-sm"
+        className="btn full"
+        style={{
+          minHeight: "40px",
+          /* tamanho da fonte do botão secundário */
+          fontSize: "13px",
+          /* cor do texto */
+          color: "#3f3744",
+        }}
       >
         Criar outro projeto
       </button>
