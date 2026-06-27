@@ -96,6 +96,7 @@ export default function HomePage() {
                 <div className="mock-nav">Plano <span className="mock-dot"></span></div>
                 <div className="mock-nav">Agente <span className="mock-dot"></span></div>
                 <div className="mock-nav">Download <span className="mock-dot"></span></div>
+                <div className="mock-nav">ZIP pronto <span className="mock-dot"></span></div>
               </aside>
               <main className="mock-main">
                 <div className="mock-top">
@@ -103,7 +104,6 @@ export default function HomePage() {
                     <h2>o guia pra você começar seu projeto do jeito certo.</h2>
                     <p>Você recebe todos os arquivos necessários pra começar seu projeto e a própria documentação orienta o agente a te guiar durante todo o processo.</p>
                   </div>
-                  <span className="pill">ZIP pronto</span>
                 </div>
                 <div className="mock-grid">
                   <article className="mock-card">
