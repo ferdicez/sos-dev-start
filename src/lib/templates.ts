@@ -38,11 +38,12 @@ ${prd.regrasSegurancaAgente.map((r) => `- ${r}`).join("\n")}
 - SEMPRE atualize o .env.example ao adicionar novas variáveis de ambiente
 
 ### Git e Branches
-- SEMPRE crie uma branch para cada nova feature: \`git checkout -b feature/nome-da-feature\`
-- NUNCA faça commit ou push direto para main/master
+- Para features grandes: crie uma branch antes de começar: \`git checkout -b feature/nome-da-feature\`
+- Para ajustes pequenos: pode commitar direto na main
 - Mensagens de commit em português e descritivas: \`feat: descrição clara do que foi feito\`
 - Delete branches após o merge
-- Abra PR para revisão antes de mergear qualquer coisa
+- PR é opcional — abra apenas quando quiser revisar antes de mergear
+- Após cada commit, solicite ao usuário: **"Quer compactar e limpar a conversa antes de continuar?"**
 
 ### Ordem de Desenvolvimento
 - Siga SEMPRE a ordem do arquivo \`plano.md\`
@@ -99,11 +100,12 @@ ${prd.regrasSegurancaAgente.map((r) => `- ${r}`).join("\n")}
 - ALWAYS update .env.example when adding new environment variables
 
 ### Git Workflow
-- ALWAYS create a branch before starting any new feature: \`git checkout -b feature/feature-name\`
-- NEVER commit or push directly to main/master
+- For large features: create a branch before starting: \`git checkout -b feature/feature-name\`
+- For small adjustments: commit directly to main is fine
 - Write descriptive commit messages: \`feat: clear description of what was done\`
 - Delete branches after merge
-- Open a PR for review before merging
+- PR is optional — open one only when you want to review before merging
+- After each commit, ask the user: **"Do you want to compact and clear the conversation before continuing?"**
 
 ### Development Order
 - Follow the \`plano.md\` file for the order of development
