@@ -164,116 +164,142 @@ Construa primeiro o que funciona. Depois o que fica bonito.
 `;
 }
 
-export function gerarSOSmd(prd: PRDData, stackEscolhida?: StackOpcao): string {
-  const stack = stackEscolhida ?? prd.opcoesStack[0];
-
-  return `# SOS — Guia de Sobrevivencia no Terminal
-# ${prd.nomeProjeto}
-
-> Você não precisa saber tudo de cabeça. Este arquivo existe por isso.
-
----
+export function gerarSOSmd(): string {
+  return `# SOS — Guia rápido
 
 ## Para começar
-
-### 1. Configurar variaveis de ambiente
-\`\`\`bash
-cp .env.example .env.local
-\`\`\`
-Abra o .env.local e substitua os valores reais.
-
-### 2. Instalar dependencias
-\`\`\`bash
-npm install
-\`\`\`
-
-### 3. Rodar em desenvolvimento
-\`\`\`bash
-npm run dev
-\`\`\`
-Abra no navegador: http://localhost:3000
-
-### 4. Diga ao agente:
-iniciar projeto
+1. Abra a pasta do projeto no terminal.
+2. Configure \`.env.local\` usando \`.env.example\` como modelo.
+3. Diga ao agente: **iniciar projeto**.
 
 ---
 
-## Git — O essencial
+## Glossário de comandos do terminal
 
-### Criar uma branch (sempre antes de começar algo novo)
-\`\`\`bash
-git checkout -b feature/nome-da-feature
-\`\`\`
+\`npm install\` — Instala todas as dependências listadas no package.json
+  - Use sempre que clonar o projeto ou alguém adicionar um pacote
 
-### Ver o que mudou
-\`\`\`bash
-git status
-git diff
-\`\`\`
+\`npm run dev\` — Inicia o servidor local de desenvolvimento 
+  - Use para ver o projeto rodando enquanto desenvolve
 
-### Salvar o progresso (commit)
-\`\`\`bash
-git add .
-git commit -m "feat: descricao do que foi feito"
-\`\`\`
+\`npm run build\` — Gera a versão final otimizada para publicar
+  - Use antes de fazer deploy
 
-### Enviar para o GitHub
-\`\`\`bash
-git push origin feature/nome-da-feature
-\`\`\`
+\`npm install <pacote>\` — Instala um pacote específico
+  - Use quando o agente indicar que precisa de uma nova dependência
 
-### Voltar para a branch principal
-\`\`\`bash
-git checkout main
-\`\`\`
+\`npm uninstall <pacote>\` — Remove um pacote do projeto
+  - Use quando um pacote não for mais necessário
 
-### Juntar a branch com main
-\`\`\`bash
-git checkout main
-git merge feature/nome-da-feature
-\`\`\`
+\`ls\` (Mac/Linux) \`dir\` (Windows) — Lista os arquivos e pastas do diretório atual
+  - Use para saber o que tem na pasta onde você está
+
+\`cd <pasta>\` — Entra em uma pasta
+  - Use para navegar entre diretórios
+
+\`cd ..\` — Volta para a pasta anterior
+  - Use para subir um nível no diretório
+
+\`pwd\` — Mostra o caminho completo da pasta atual
+  - Use quando não souber onde está no sistema
+
+\`clear\` — Limpa a tela do terminal 
+  - Use quando o terminal estiver cheio de texto
 
 ---
 
-## Comandos do projeto
+## Glossário de versionamento (Git)
 
-${prd.comandosIniciais.map((cmd) => `\`\`\`bash\n${cmd}\n\`\`\``).join("\n\n")}
+\`git init\` — Inicia um repositório Git na pasta
+  - Use uma vez, no começo do projeto
+
+\`git status\` — Mostra o que foi alterado e o que está pendente
+  - Use sempre que quiser saber o estado atual
+
+\`git add .\` — Prepara todas as alterações para o commit
+  - Use antes de commitar
+
+\`git commit -m "mensagem"\` — Salva um ponto de controle com uma descrição
+  - Use ao terminar uma tarefa ou fase
+
+\`git log\` — Mostra o histórico de commits
+  - Use para ver o que já foi salvo
+
+\`git branch\` — Lista as branches existentes
+  - Use para ver em qual versão você está trabalhando
+
+\`git checkout -b <nome>\` — Cria e entra em uma branch nova
+  - Use ao iniciar uma funcionalidade nova
+
+\`git checkout <branch>\` — Troca de branch
+  - Use para mudar de versão ou funcionalidade
+
+\`git merge <branch>\` — Une uma branch com a atual
+  - Use quando terminar uma funcionalidade e quiser juntar com a main
+
+\`git push\` — Envia os commits para o repositório remoto (GitHub)
+  - Use depois de commitar, para salvar online
+
+\`git pull\` — Baixa as atualizações do repositório remoto
+  - Use antes de começar a trabalhar ou quando alguém subiu alterações
+
+**Branch** — Uma versão paralela do projeto
+  - Permite desenvolver funcionalidades sem afetar o código principal
+
+**Commit** — Um ponto salvo no histórico do projeto
+  - Funciona como um checkpoint — dá para voltar a ele se algo der errado
+
+**Pull Request (PR)** — Pedido para unir sua branch com a principal
+  - Use quando terminar uma funcionalidade e quiser integrar ao projeto
+
+**Main / Master** — A branch principal do projeto
+  - É a versão oficial e estável do código
+
+**Merge** — Unir duas branches
+  - Use para combinar o trabalho de uma branch com outra
+
+**Clone** — Baixar um repositório do GitHub para o computador
+  - Use para clonar um projeto existente remotamente
 
 ---
 
-## O que pedir ao agente em cada etapa
+## Boas práticas — o que fazer ao final de cada fase
 
-| Etapa | Terminal | Dizer ao agente |
-|-------|----------|-----------------|
-| Inicio | npm install | "iniciar projeto" |
-| Nova feature | git checkout -b feature/nome | "implementar [feature]" |
-| Revisar progresso | — | "o que foi feito ate agora?" |
-| Salvar | git add . && git commit | — |
-| Bug ou erro | — | "erro: [colar o erro aqui]" |
-| Fase concluida | git push | "marcar fase [X] como concluida" |
-| Deploy | — | "preparar para deploy no ${stack.hosting}" |
+Ao terminar uma fase do plano, siga este fluxo antes de continuar:
+
+### 1. Rode o projeto e teste
+- Abra o terminal e rode: \`npm run dev\`
+- Abra no navegador e teste o que foi feito nessa fase. Verifique se o fluxo principal funciona sem erros visíveis.
+
+### 2. Peça ao agente para revisar
+- Diga: "revise o que foi feito nessa fase e aponte qualquer problema."
+- O agente vai checar o código, a lógica e se os critérios do PRD foram atendidos.
+
+### 3. Atualize o PLANO.md
+- O agente vai marcar as tarefas concluídas com \`[x]\`.
+- Confirme se está correto antes de continuar.
+
+### 4. Faça o commit
+- Abra o terminal e rode:
+- \`git add .\`
+- \`git commit -m "fase 1: fundação concluída"\`
+- Use mensagens curtas e descritivas. O commit é o seu ponto de segurança — se algo der errado depois, você pode voltar até aqui.
+
+### 5. Suba para o repositório remoto
+- Abra o terminal e rode: \`git push\`
+- Isso salva tudo online (GitHub, etc.). Faça isso ao final de cada fase.
+
+### 6. (Se estiver em uma branch separada) Abra um Pull Request
+- Acesse o GitHub, vá até o repositório e clique em **"Compare & pull request"**. Dê um título descritivo e clique em **"Create pull request"**. Isso une sua branch com a principal de forma organizada e rastreável.
+
+### 7. Compacte e limpe a conversa
+- Antes de iniciar a próxima fase, diga ao agente: "resuma o que foi feito, atualize o PLANO.md se necessário e compacte a conversa."
+- Isso evita que o agente fique confuso com muito histórico acumulado e mantém as respostas mais precisas e rápidas.
 
 ---
 
-## Variaveis de ambiente
-
-NUNCA commite seu .env.local — ele esta no .gitignore.
-Se criar uma variavel nova, adicione no .env.example sem o valor real.
-
-${prd.variaveisAmbiente.map((v) => `${v.split("=")[0]} — ${v.split("=").slice(1).join("=")}`).join("\n")}
-
----
-
-## Duvidas frequentes
-
-O agente instalou algo sem pedir?
-Verifique o package.json e remova o que nao reconhece. Diga: "nao instale pacotes sem minha aprovacao"
-
-Apareceu um erro que nao entendo?
-Copie o erro completo e diga: "esta dando este erro: [cole aqui]"
-
-Nao sabe se uma feature esta funcionando?
-Diga: "teste e me diga se [feature] esta funcionando corretamente"
+## Quando der erro
+Copie o erro completo e diga ao agente: "está dando este erro: [cole aqui]"
 `;
 }
 

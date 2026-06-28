@@ -35,7 +35,7 @@ export function StepDownload({ prd, stackEscolhida, onNovoProjeto }: Props) {
       { nome: "CLAUDE.md", conteudo: gerarCLAUDEmd(prd, stackEscolhida), descricao: "Instruções completas para o agente Claude Code" },
       { nome: "AGENTS.md", conteudo: gerarAGENTSmd(prd, stackEscolhida), descricao: "Instruções para outros agentes (Codex, Copilot, etc.)" },
       { nome: "plano.md", conteudo: gerarPlanomd(prd), descricao: "Plano de desenvolvimento em fases com tarefas" },
-      { nome: "sos.md", conteudo: gerarSOSmd(prd, stackEscolhida), descricao: "Guia de sobrevivência no terminal" },
+      { nome: "sos.md", conteudo: gerarSOSmd(), descricao: "Guia de sobrevivência no terminal" },
       { nome: ".env.example", conteudo: gerarEnvExample(prd), descricao: "Template das variáveis de ambiente" },
       { nome: ".gitignore", conteudo: gerarGitignore(), descricao: "Arquivos que o Git deve ignorar" },
       { nome: "README.md", conteudo: gerarREADME(prd, stackEscolhida), descricao: "Documentação principal do projeto" },
