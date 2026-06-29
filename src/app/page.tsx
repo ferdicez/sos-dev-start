@@ -60,6 +60,7 @@ export default function HomePage() {
           </div>
           <div className="tabs">
             <Link href="/criar" className="btn tab">projeto</Link>
+            <Link href="/ferramentas" className="btn tab">ferramentas</Link>
           </div>
         </div>
       </header>

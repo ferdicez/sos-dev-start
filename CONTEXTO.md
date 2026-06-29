@@ -6,6 +6,96 @@ Uma **aplicação web** (Next.js) que funciona como um **gerador de pacote inici
 
 ---
 
+## Estrutura de arquivos (src/)
+
+```
+src/
+├── app/
+│   ├── layout.tsx              # layout raiz (fontes: Manrope + JetBrains Mono)
+│   ├── page.tsx                # landing page (homepage)
+│   ├── globals.css             # design system completo (cores, botões, topbar, grid...)
+│   ├── criar/
+│   │   └── page.tsx            # página do wizard de criação de projeto
+│   ├── ferramentas/
+│   │   └── page.tsx            # página "outras ferramentas" com guias interativos (modal)
+│   └── api/
+│       └── gerar-prd/
+│           └── route.ts        # API route — gera o PRD via IA
+├── components/
+│   └── wizard/
+│       ├── WizardContainer.tsx     # container do wizard, controla steps
+│       ├── StepApiKey.tsx          # step 0: chave da API
+│       ├── StepBasicos.tsx         # step 1: dados básicos do projeto
+│       ├── StepContexto.tsx        # step 2: contexto adicional
+│       ├── StepGerandoPRD.tsx      # step 3: tela de loading durante geração
+│       ├── StepAprovacaoPRD.tsx    # step 4: revisão do PRD gerado
+│       └── StepDownload.tsx        # step 5: download do ZIP
+└── lib/
+    ├── types.ts                # tipos TypeScript compartilhados
+    └── templates.ts            # templates dos arquivos gerados no ZIP
+```
+
+---
+
+## Design system (globals.css)
+
+Todas as classes visuais estão em `globals.css`. Não usar Tailwind para novos componentes — usar as classes existentes.
+
+**Cores principais:**
+- `#b7c939` — verde-limão (ação primária, destaques, hover)
+- `#6f7b18` — verde escuro (labels, kickers, textos secundários verdes)
+- `#1b1b25` — quase preto (fundo escuro, texto principal)
+- `#f7f7f4` — bege claro (fundo da página)
+- `#f0f1ea` — cinza esverdeado (fundo de campos, seções alt)
+- `#3f3744` — cinza roxo (textos secundários)
+- `#adcbf8` — azul claro (accent decorativo)
+- `#c987e1` — lilás (accent decorativo)
+
+**Fontes:**
+- `Manrope` — corpo e títulos (peso 400–900)
+- `JetBrains Mono` — código, labels, números, pills
+
+**Classes utilitárias importantes:**
+- `.btn`, `.btn.primary`, `.btn.ghost`, `.btn.small`, `.btn.danger`
+- `.topbar`, `.topbar-inner`, `.brand`, `.tabs`, `.tab`, `.tab.active`
+- `.input`, `.textarea`, `.select`, `.label`, `.hint`, `.divider`
+- `.lp-shell`, `.lp-section`, `.lp-section--dark`, `.lp-section--alt`
+- `.pill`, `.kicker`
+
+---
+
+## Páginas existentes
+
+| Rota | Arquivo | Descrição |
+|---|---|---|
+| `/` | `app/page.tsx` | Landing page com hero, mapa do pacote, features, arquivos, como funciona, CTA |
+| `/criar` | `app/criar/page.tsx` | Wizard de criação (6 steps) |
+| `/ferramentas` | `app/ferramentas/page.tsx` | Página de ferramentas extras com guias M3 em modal |
+
+---
+
+## Topbar
+
+O topbar é declarado **dentro de cada page** (não é um componente compartilhado). Ao criar novas páginas, copiar o padrão:
+
+```tsx
+<header className="topbar">
+  <div className="topbar-inner">
+    <div className="brand">
+      <span className="mark">...</span>
+      <Link href="/">sos dev start</Link>
+    </div>
+    <div className="tabs">
+      <Link href="/criar" className="btn tab">projeto</Link>
+      <Link href="/ferramentas" className="btn tab">ferramentas</Link>
+      {/* adicionar className="active" na aba da página atual */}
+    </div>
+  </div>
+</header>
+```
+
+---
+
 ## Como funciona o fluxo
 
 O usuário passa por um **wizard em etapas**:
