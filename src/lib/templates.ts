@@ -23,44 +23,50 @@ ${stackResumo(stack)}
 
 ## Como Iniciar o Projeto
 Quando o usuário disser "iniciar projeto", execute esta sequência:
-\`\`\`
-${prd.comandosIniciais.join("\n")}
-\`\`\`
 
-## Regras Obrigatórias para o Agente
+1. Leia o arquivo PRD.md
+2. Leia o arquivo PLANO.md
+3. Informe ao usuário quais serão os próximos passos.
 
-### Segurança — NUNCA viole estas regras
-${prd.regrasSegurancaAgente.map((r) => `- ${r}`).join("\n")}
-- NUNCA instale pacotes sem confirmar com o usuário primeiro
-- NUNCA faça push ou deploy sem aprovação explícita do usuário
-- NUNCA exponha dados sensíveis em logs ou mensagens de commit
-- SEMPRE use variáveis de ambiente para chaves e segredos
-- SEMPRE atualize o .env.example ao adicionar novas variáveis de ambiente
 
-### Git e Branches
-- Para features grandes: crie uma branch antes de começar: \`git checkout -b feature/nome-da-feature\`
-- Para ajustes pequenos: pode commitar direto na main
-- Mensagens de commit em português e descritivas: \`feat: descrição clara do que foi feito\`
-- Delete branches após o merge
-- PR é opcional — abra apenas quando quiser revisar antes de mergear
-- Após cada commit, solicite ao usuário: **"Quer compactar e limpar a conversa antes de continuar?"**
+# Regras de Comportamento
 
-### Ordem de Desenvolvimento
-- Siga SEMPRE a ordem do arquivo \`plano.md\`
-- Conclua uma fase antes de iniciar a próxima
+## Escopo
+- Só faça exatamente o que foi pedido. Se a tarefa não deixar claro o que fazer em algum ponto, pare e pergunte antes de decidir por conta própria.
+- Nunca expanda o escopo da tarefa (refatorar arquivo extra, "melhorar" algo que não foi pedido, trocar abordagem) sem confirmar antes.
+- Se enxergar um problema ou risco fora do que foi pedido, avise — mas não corrija sozinho sem aprovação.
+
+## Ordem de Desenvolvimento
+- Siga SEMPRE a ordem do arquivo \`PLANO.md\`
+- Antes de iniciar cada fase, liste o que será feito e pergunte se pode iniciar.
+- A cada tarefa concluída, marque no PLANO.md substituindo \`- [ ]\` por \`- [x]\`
+- Após concluir cada fase, pergunte ao usuário se ele gostaria de fazer o commit.
+- Após cada commit, sugira ao usuário: "Antes de passar para a próxima fase, lembre de compactar e limpar a conversa."
 - Design, animações e polish visual ficam na penúltima fase — antes disso, foque em funcionar
-- Marque tarefas concluídas no plano.md substituindo \`- [ ]\` por \`- [x]\`
 
-### Boas Práticas
-- Pergunte antes de tomar decisões de arquitetura não planejadas
-- Avise quando encontrar algo que pode impactar outra parte do projeto
-- Teste localmente antes de marcar como concluído
-- Consulte o sos.md se tiver dúvidas sobre comandos
+## Arquivos
+- Não edite, renomeie ou delete nenhum arquivo que não esteja diretamente relacionado à tarefa pedida.
+- Antes de editar um arquivo que ainda não apareceu na conversa, diga qual arquivo é e por quê.
+- Se a tarefa puder ser resolvida de mais de um jeito, explique as opções e pergunte qual eu prefiro — não escolha por mim.
 
-## Estrutura de Pastas
-\`\`\`
-${prd.estruturaPastas}
-\`\`\`
+## Segurança — NUNCA viole estas regras
+${prd.regrasSegurancaAgente.map((r) => `- ${r}`).join("\n")}
+- NUNCA instale pacotes sem confirmar com o usuário primeiro.
+- NUNCA faça push ou deploy sem aprovação explícita do usuário.
+- NUNCA exponha dados sensíveis em logs ou mensagens de commit.
+- SEMPRE use variáveis de ambiente para chaves e segredos.
+- SEMPRE atualize o .env.example ao adicionar novas variáveis de ambiente.
+
+## Comunicação
+- Antes de qualquer mudança maior (mais de um arquivo, mudança de lógica, nova dependência), explique o que vai fazer e por quê, em poucas frases.
+- Seja direto e específico: diga o nome dos arquivos, o que muda em cada um, e o motivo. Nada de resumo vago.
+- Se terminar uma tarefa e tiver feito algo além do que foi pedido, destaque isso no final, separado do resto.
+
+## Dúvida
+- Na dúvida, pergunte. Não assuma a interpretação mais "razoável" — pergunte qual é a interpretação certa.
+
+
+# Informações Gerais
 
 ## Skills Sugeridas para este Projeto
 ${prd.skillsAgente.map((s) => `- ${s}`).join("\n")}
@@ -144,7 +150,7 @@ ${fase.tarefas.map((t) => `- [ ] ${t}`).join("\n")}
     )
     .join("\n---\n\n");
 
-  return `# Plano de Desenvolvimento — ${prd.nomeProjeto}
+  return `# PLANO de Desenvolvimento — ${prd.nomeProjeto}
 
 > Siga esta ordem. Design e polish visual ficam para o final — construa primeiro o que funciona.
 
